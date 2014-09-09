@@ -1,1 +1,1 @@
-[ ![Codeship Status for kibiluzbad/marinet-web](https://www.codeship.io/projects/62c040d0-1a7e-0132-71ab-762ec05ebf2d/status)](https://www.codeship.io/projects/34675)
+[ ![Codeship Status for kibiluzbad/marinet-web](https://www.codeship.io/projects/a028e2f0-1a85-0132-406f-7ada615c984a/status)](https://www.codeship.io/projects/34690)
