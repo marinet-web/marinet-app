@@ -1,0 +1,60 @@
+<div ng-controller="CommentsCtrl">
+    <ul class="chat-box timeline">
+        <div ng-repeat="comment in comments">
+
+
+            <li class="arrow-box-left gray">
+                <div class="avatar">
+                    <img class="avatar-small" gravatar-src="comment.userEmail">
+                </div>
+                <div class="info">
+                    <span class="name">
+                        <span class="label label-green">{{comment.userRole}}</span>  <strong class="indent">{{comment.userName}}</strong>
+                    </span>
+                    <span class="time"><i class="icon-time"></i> <span am-time-ago="comment.createdAt"></span></span>
+                </div>
+                <div class="content">
+                    <blockquote>
+                        {{comment.message}}
+                    </blockquote>
+                </div>
+            </li>
+        </div>
+    </ul>
+
+    <p class="note text-center">{{lastMessageTime}}</p>
+
+    <div class="box closable-chat-box open">
+
+        <div class="box-content padded">
+
+            <div class="fields">
+                <div class="avatar">
+                    <img gravatar-src="user.email">
+                    </i>
+                </div>
+                <ul>
+                    <li><b>Add a comment for error</b>
+                    </li>
+                    <li class="note">...</li>
+                </ul>
+            </div>
+
+            <form class="fill-up" ng-submit="send()">
+
+                <div class="chat-message-box">
+                    <input type="text" required ng-model="message" style="height: 50px; border: none; box-shadow: none; margin: 5px; width: 97% !important; background: #fff;" placeholder="add a comment">
+                </div>
+
+                <div class="clearfix actions">
+                    <div class="pull-right faded-toolbar">
+                        <button type="submit" btn-loading class="btn btn-blue btn-xs">Send</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
