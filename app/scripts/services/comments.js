@@ -8,15 +8,15 @@
  * Factory in the marinetApp.
  */
 angular.module('marinetApp')
-    .factory('Comments', ['$resource',
-        function ($resource) {
+    .factory('Comments', ['$resource', 'configuration',
+        function ($resource, configuration) {
             var d = new Date();
-            var comments = $resource(routingConfig.apiUrl + '/comments/:hash', {
+            var comments = $resource(configuration.url + '/comments/:hash', {
                 cacheSlayer: d.getTime()
             }, {
                 'comment': {
                     method: 'POST',
-                    url: routingConfig.apiUrl + '/comment'
+                    url: configuration.url + '/comment'
                 }
             });
             return {

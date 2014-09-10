@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('marinetApp')
-    .factory('Apps', ['$resource',
-        function ($resource) {
+    .factory('Apps', ['$resource', 'configuration',
+        function ($resource, configuration) {
             var d = new Date();
-            var apps = $resource(routingConfig.apiUrl + '/account/apps', {
+            var apps = $resource(configuration.url + '/account/apps', {
                 cacheSlayer: d.getTime()
             }, {
                 purge: {
                     method: 'DELETE',
-                    url: routingConfig.apiUrl + '/account/:appName/Purge'
+                    url: configuration.url + '/account/:appName/Purge'
                 },
                 save: {
                     method: 'POST',
-                    url: routingConfig.apiUrl + '/account/app'
+                    url: configuration.url + '/account/app'
                 }
             });
             return {

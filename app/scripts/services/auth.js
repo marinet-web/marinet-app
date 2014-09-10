@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('marinetApp')
-    .service('Auth', ['$http', '$rootScope', '$cookieStore', '$q',
-        function ($http, $rootScope, $cookieStore, $q) {
+    .service('Auth', ['$http', '$rootScope', '$cookieStore', '$q', 'configuration',
+        function ($http, $rootScope, $cookieStore, $q, configuration) {
 
             var accessLevels = routingConfig.accessLevels,
                 userRoles = routingConfig.userRoles;
 
             var deferred = $q.defer();
 
-            $http.get(routingConfig.apiUrl + '/user')
+            $http.get(configuration.url + '/user')
                 .success(function (data) {
                     console.log(data);
                     $rootScope.loggedIn = true;
@@ -42,11 +42,11 @@ angular.module('marinetApp')
                 },
 
                 register: function (user, success, error) {
-                    $http.post(routingConfig.apiUrl + '/register', user).success(success).error(error);
+                    $http.post(configuration.url + '/register', user).success(success).error(error);
                 },
 
                 login: function (user, success, error) {
-                    $http.post(routingConfig.apiUrl + '/login', user).success(function (data) {
+                    $http.post(configuration.url + '/login', user).success(function (data) {
                         console.log(data);
                         $rootScope.user = data;
                         $rootScope.loggedIn = true;
@@ -56,7 +56,7 @@ angular.module('marinetApp')
                 },
 
                 logout: function (success, error) {
-                    $http.delete(routingConfig.apiUrl + '/logout').success(function () {
+                    $http.delete(configuration.url + '/logout').success(function () {
                         $rootScope.user = {
                             username: '',
                             role: userRoles.public

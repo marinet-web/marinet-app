@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('marinetApp')
-    .factory('Errors', ['$resource',
-        function ($resource) {
+    .factory('Errors', ['$resource', 'configuration',
+        function ($resource, configuration) {
             var d = new Date();
             console.log('criado');
-            var errors = $resource(routingConfig.apiUrl + '/:appName/error/:hash', {
+            var errors = $resource(configuration.url + '/:appName/error/:hash', {
                 cacheSlayer: d.getTime()
             }, {
                 'find': {
-                    url: routingConfig.apiUrl + '/:appName/errors'
+                    url: configuration.url + '/:appName/errors'
                 },
                 'findOne': {
-                    url: routingConfig.apiUrl + '/error/:hash/:id'
+                    url: configuration.url + '/error/:hash/:id'
                 },
                 'solve': {
                     method: 'PUT',

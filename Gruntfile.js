@@ -9,12 +9,15 @@
 
 module.exports = function (grunt) {
 
+
+
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-replace');
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
@@ -355,6 +358,35 @@ module.exports = function (grunt) {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
+        },
+
+        replace: {
+            dev: {
+                options: {
+                    patterns: [{
+                        json: grunt.file.readJSON('./config/environments/dev.json')
+        }]
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['./config/config.js'],
+                    dest: '<%= yeoman.app %>/scripts/services/'
+      }]
+            },
+            production: {
+                options: {
+                    patterns: [{
+                        json: grunt.file.readJSON('./config/environments/production.json')
+        }]
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['./config/config.js'],
+                    dest: '<%= yeoman.app %>/scripts/services/'
+      }]
+            }
         }
     });
 
@@ -366,7 +398,8 @@ module.exports = function (grunt) {
 
         grunt.task.run([
       'clean:server',
-      'wiredep',
+      'replace:dev',
+            'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -389,6 +422,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
     'clean:dist',
+        'replace:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

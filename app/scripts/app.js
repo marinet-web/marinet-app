@@ -10,6 +10,7 @@ angular
     'infinite-scroll',
     'toaster',
     'ui.gravatar',
+    'services.config',
   ])
     .config(['$routeProvider', '$httpProvider', '$locationProvider',
         function ($routeProvider, $httpProvider, $locationProvider) {
