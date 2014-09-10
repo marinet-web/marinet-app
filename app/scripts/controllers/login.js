@@ -3,6 +3,9 @@
 angular.module('marinetApp')
     .controller('LoginCtrl', ['$scope', '$location', 'Auth', 'toaster',
         function ($scope, $location, Auth, toaster) {
+            if ($scope.$root.user && $scope.$root.user.username) {
+                $location.path($scope.$root.user.accountName + '/dashboard');
+            }
             $scope.user = {
                 username: '',
                 password: ''

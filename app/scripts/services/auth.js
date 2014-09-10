@@ -7,31 +7,14 @@ angular.module('marinetApp')
             var accessLevels = routingConfig.accessLevels,
                 userRoles = routingConfig.userRoles;
 
-            var deferred = $q.defer();
-
-            $http.get(configuration.url + '/user')
-                .success(function (data) {
-                    console.log(data);
-                    $rootScope.loggedIn = true;
-                    deferred.resolve(data);
-                })
-                .error(function (err) {
-                    console.log(err);
-                    deferred.resolve({
-                        username: '',
-                        role: userRoles.public
-                    });
-                });
-
             $rootScope.loggedIn = false;
-            $rootScope.user = deferred.promise;
+            $rootScope.user = {};
 
             $rootScope.accessLevels = accessLevels;
             $rootScope.userRoles = userRoles;
 
             return {
                 authorize: function (accessLevel, role) {
-                    console.log($rootScope.user);
                     if (role === undefined)
                         role = $rootScope.user.role;
                     return accessLevel & role;
@@ -47,7 +30,6 @@ angular.module('marinetApp')
 
                 login: function (user, success, error) {
                     $http.post(configuration.url + '/login', user).success(function (data) {
-                        console.log(data);
                         $rootScope.user = data;
                         $rootScope.loggedIn = true;
                         success(data);
@@ -64,6 +46,24 @@ angular.module('marinetApp')
                         $rootScope.loggedIn = false;
                         success();
                     }).error(error);
+                },
+
+                fillData: function () {
+
+                    $http.get(configuration.url + '/user')
+                        .success(function (data) {
+                            $rootScope.loggedIn = true;
+                            $rootScope.user = data;
+                        })
+                        .error(function (err) {
+                            console.log(err);
+                            $rootScope.loggedIn = false;
+                            $rootScope.user = {
+                                username: '',
+                                role: userRoles.public
+                            };
+                        });
+
                 },
 
                 accessLevels: accessLevels,

@@ -46,7 +46,7 @@
             <table style="clear: both" class="table table-bordered table-striped responsive">
                 <tbody>
                     <tr ng-repeat="(key, value) in error " ng-if="canShow(key)">
-                        <td width="20%">{{key}}</td>
+                        <td width="20%">{{key|inflector:'humanize'}}</td>
                         <td width="80%">{{displayVal(value)}}</td>
                     </tr>
                     <tr>

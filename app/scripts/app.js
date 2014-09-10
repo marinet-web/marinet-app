@@ -11,6 +11,7 @@ angular
     'toaster',
     'ui.gravatar',
     'services.config',
+    'ui.utils',
   ])
     .config(['$routeProvider', '$httpProvider', '$locationProvider',
         function ($routeProvider, $httpProvider, $locationProvider) {
@@ -80,7 +81,6 @@ angular
     }])
     .run(['$rootScope', '$location', 'Auth',
         function ($rootScope, $location, Auth) {
-
-
+            Auth.fillData();
 
 }]);
