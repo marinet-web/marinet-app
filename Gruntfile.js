@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-version');
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
@@ -26,6 +27,15 @@ module.exports = function (grunt) {
 
     // Define the configuration for all the tasks
     grunt.initConfig({
+
+        version: {
+            index: {
+                options: {
+                    prefix: '(\\<title\\>marinet \\-\\s)|([^\\-]version[\'"]?\\s*[:=]\\s*[\'"])'
+                },
+                src: ['app/index.html', 'package.json', 'bower.json']
+            },
+        },
 
         // Project settings
         yeoman: appConfig,
