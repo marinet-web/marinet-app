@@ -27,9 +27,10 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-
+  
   // Thirdparty barrels.
   'rxjs',
+  'angular2-jwt',
 
   // App specific barrels.
   'app',
@@ -53,6 +54,7 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'angular2-jwt': 'vendor/angular2-jwt',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages
