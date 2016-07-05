@@ -1,0 +1,78 @@
+<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/apps">
+      <img class="menu-avatar" src="images/marinet.png" />marinet</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-primary">
+                <span class="sr-only">Toggle Side Navigation</span>
+                <i class="icon-th-list"></i>
+            </button>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                <span class="sr-only">Toggle Top Navigation</span>
+                <i class="icon-align-justify"></i>
+            </button>
+  </div>
+  <div class="collapse navbar-collapse navbar-collapse-top" *ngIf="loggedIn">
+    <div class="navbar-right">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a class="dropdown-toggle dropdown-avatar" data-toggle="dropdown">
+            <span>
+                        <img gravatar-src="user.email" class="menu-avatar"><span>user.username <i class="icon-caret-down"></i></span>
+            </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="with-image">
+              <div class="avatar">
+                <img gravatar-src="user.email">
+
+              </div>
+              <span>user.username</span>
+            </li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-user"></i> <span>Perfil</span></a>
+            </li>
+            <li><a href="#"><i class="icon-cog"></i> <span>Configurações</span></a>
+            </li>
+            <li><a href="#"><i class="icon-envelope"></i> <span>Mensagens</span> <span class="label label-dark-red pull-right">5</span></a>
+            </li>
+            <li><a><i class="icon-off"></i> <span>Sair</span></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="sidebar-background" *ngIf="loggedIn">
+  <div class="primary-sidebar-background"></div>
+</div>
+<div class="primary-sidebar" *ngIf="loggedIn">
+  <ul id="menu" class="nav navbar-collapse collapse navbar-collapse-primary">
+    <li class="active">
+      <span class="glow"></span>
+      <a href="/user.accountName/dashboard">
+        <i class="icon-dashboard icon-2x"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li class="dark-nav ">
+      <span class="glow"></span>
+      <a class="accordion-toggle collapsed " data-toggle="collapse">
+        <i class="icon-cogs icon-2x"></i>
+        <span teste>Applications</span>
+      </a>
+      <ul>
+        <li class="" *ngFor="#app of apps">
+          <a href="user.accountName/app.name/errors">
+            <i class="icon-cog"></i><span>app.name</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div [ngClass]="{'main-content': loggedIn}">
+  <router-outlet></router-outlet>
+</div>
