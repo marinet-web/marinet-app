@@ -21,7 +21,7 @@ export class Auth extends EventEmitter<any> {
     login(user) {
         return this._http.post(loginUrl, user, { headers: contentHeaders })
             .map(res => {
-                let token = res.text();
+                let token = res.json();
                 this.loggedIn(token);
                 return token;
             })
