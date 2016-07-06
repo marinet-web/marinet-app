@@ -42,6 +42,7 @@ const barrels: string[] = [
   'app/signup',
   'app/gravatar',
   'app/apps',
+  'app/error',
   /** @cli-barrel */
 ];
 
