@@ -31,6 +31,7 @@ const barrels: string[] = [
   // Thirdparty barrels.
   'rxjs',
   'angular2-jwt',
+  'ts-md5',
 
   // App specific barrels.
   'app',
@@ -38,6 +39,8 @@ const barrels: string[] = [
   'app/app',
   'app/dashboard',
   'app/login',
+  'app/signup',
+  'app/gravatar',
   /** @cli-barrel */
 ];
 
@@ -54,6 +57,7 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'ts-md5': 'vendor/ts-md5',
     'angular2-jwt': 'vendor/angular2-jwt',
     'main': 'main.js'
   },

@@ -15,9 +15,8 @@
   <link type="text/css" rel="stylesheet" media="screen" href="styles/application.css">
   <link type="text/css" rel="stylesheet" media="screen" href="styles/style.css">
 </head>
-
 <body>
-  <app-root>Loading...</app-root>
+  <app-root><div class="loader">Loading...</div></app-root>
   {{#each scripts.polyfills}}
   <script src="{{.}}"></script> {{/each}}
   <script>

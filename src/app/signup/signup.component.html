@@ -1,24 +1,26 @@
 <div class="col-md-4 col-md-offset-4">
   <div class="padded">
     <div class="login box" style="margin-top: 80px;">
-      <div class="box-header"><span class="title">Login</span></div>
+      <div class="box-header"><span class="title">Sign Up</span></div>
       <div class="box-content padded">
         <form name="form" class="separate-sections" role="form" (submit)="login($event)">
           <div class="input-group addon-left">
             <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input name="Username" [(ngModel)]="username" type="text" placeholder="username" required>
+            <input name="Username" [(ngModel)]="username" type="text" placeholder="Type your email" required>
           </div>
           <div class="input-group addon-left">
             <span class="input-group-addon"><i class="icon-key"></i></span>
             <input name="Password" [(ngModel)]="password" type="password" placeholder="password" required>
           </div>
+          <div class="input-group addon-left">
+            <span class="input-group-addon"><i class="icon-key"></i></span>
+            <input name="confirm" [(ngModel)]="confimPassword" type="password" placeholder="Confirm your password" required>
+          </div>
           <div>
-            <button class="btn btn-blue btn-block" type="submit">Login <i class="icon-signin"></i></button>
+            <button class="btn btn-blue btn-block" type="submit">Signup <i class="icon-signup"></i></button>
           </div>
         </form>
-        <div>
-          <a [routerLink]="['/signup']">Don't have an account? <strong>Sign Up</strong></a>
-        </div>
+        
       </div>
     </div>
   </div>

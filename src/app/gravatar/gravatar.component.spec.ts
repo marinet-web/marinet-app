@@ -10,11 +10,11 @@ import {
   async, inject
 } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import { GravatarComponent } from './gravatar.component';
 
-describe('Component: Login', () => {
+describe('Component: Gravatar', () => {
   it('should create an instance', () => {
-    let component = new LoginComponent(null, null);
+    let component = new GravatarComponent();
     expect(component).toBeTruthy();
   });
 });
