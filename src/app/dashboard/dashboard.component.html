@@ -61,7 +61,7 @@
                   <td ng-bind="">{{app.openErrors}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <a href="/user.accountName/app.name/errors" class="btn btn-success">Erros</a>
+                      <a [routerLink]="['/'+app.name,'errors']" class="btn btn-success">Erros</a>
                     </div>
                   </td>
                 </tr>
