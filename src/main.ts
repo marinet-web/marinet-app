@@ -23,6 +23,6 @@ bootstrap(AppComponent, [
   Auth,
   HTTP_PROVIDERS,
   AUTH_PROVIDERS,
-  AppsService
+  AppsService,
 ]);
 

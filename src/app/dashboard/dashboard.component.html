@@ -23,14 +23,14 @@
     <div class="row action-nav-row">
 
       <div class="col-sm-2 action-nav-button">
-        <a href="/user.accountName/newapp" title="Nova aplicação">
+        <a [routerLink]="['/newapp']" title="Nova aplicação">
           <i class="icon-file-alt"></i>
           <span>Nova aplicação</span>
         </a>
         <span class="triangle-button red"><i class="icon-plus"></i></span>
       </div>
       <div class="col-sm-2 action-nav-button">
-        <a href="/user.accountName/apps" title="Aplicações">
+        <a [routerLink]="['/apps']" title="Aplicações">
           <i class="icon-cogs"></i>
           <span>Applicações</span>
         </a>

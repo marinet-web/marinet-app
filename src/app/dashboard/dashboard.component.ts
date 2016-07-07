@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { AppsService, App } from '../apps';
 
@@ -6,7 +7,8 @@ import { AppsService, App } from '../apps';
   moduleId: module.id,
   selector: 'app-dashboard',
   templateUrl: 'dashboard.component.html',
-  styleUrls: ['dashboard.component.css']
+  styleUrls: ['dashboard.component.css'],
+  directives: [ROUTER_DIRECTIVES]
 })
 export class DashboardComponent implements OnInit {
 
