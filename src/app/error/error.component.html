@@ -1,3 +1,85 @@
-<p>
-  error works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="area-top clearfix">
+            <div class="pull-left header">
+                <h3 class="title"><i [ngClass]="{'icon-ok-sign': solved, 'icon-minus-sign': !solved}"></i>{{error.message | truncate:25}}</h3>
+                <h5><span>A subtitle can go here</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container padded">
+    <div class="row">
+        <div id="breadcrumbs">
+            <div class="breadcrumb-button blue">
+                <a [routerLink]="['/apps']" class="breadcrumb-label"><i class="icon-cog"></i> Aplicações</a>
+                <span class="breadcrumb-arrow"><span></span></span>
+            </div>
+            <div class="breadcrumb-button">
+                <a [routerLink]="['/'+name,'/errors']" class="breadcrumb-label"><i class="icon-cog"></i> {{name | truncate:25}}</a>
+                <span class="breadcrumb-arrow"><span></span></span>
+            </div>
+            <div class="breadcrumb-button">
+                <span class="breadcrumb-label"><i [ngClass]="{'icon-ok-sign': solved, 'icon-minus-sign': !solved}"></i> {{error.message | truncate:25}}</span>
+                <span class="breadcrumb-arrow"><span></span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" ng-show="error">
+    <div class="box">
+        <div class="box-header">
+            <span class="title text-error">Error</span>
+            <ul class="box-toolbar">
+                <li>
+                    <a class="btn btn-sm btn-green" *ngIf="solved" disabled="disabled">
+                        <i class="icon-ok-sign"></i> solved
+                    </a>
+
+                    <a (click)="solve()" class="btn btn-sm btn-red" *ngIf="!solved">
+                        <i class="icon-minus-sign"></i> unsolved
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="box-content padded">
+            <table style="clear: both" class="table table-bordered table-striped responsive">
+                <tbody>
+                    <!--<tr *ngFor="(key, value) of error " ng-if="canShow(key)">
+                        <td width="20%">{{key|inflector:'humanize'}}</td>
+                        <td width="80%">{{displayVal(value)}}</td>
+                    </tr>-->
+                    <tr>
+                        <td>message</td>
+                        <td>
+                            <span class="text-error">{{error.message}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">stack trace</td>
+                    </tr>
+                    <tr>
+                        <td class="stacktrace" colspan="2">
+                            <pre>{{error.exception}}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">More Errors</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul class="pagination">
+                                <li [ngClass]="{disabled: error.selected == key}" *ngFor="#key of keys">
+                                    <a (click)="load(key)" class="text-center">
+                                        {{key}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <comments></comments>
+</div>

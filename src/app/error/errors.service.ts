@@ -16,7 +16,7 @@ export interface Result<T> {
     sort: number;
 }
 
-export interface Error {
+export interface ErrorAggregation {
     _id: ErrorId;
     hash: string;
     message: string;
@@ -24,6 +24,20 @@ export interface Error {
     createdAt: Date;
     solved: boolean
     count: number
+}
+
+export interface Error {
+    selected: string;
+    _id: string;
+    hash: string;
+    solved: boolean;
+    accountId: string;
+    appName: string;
+    currentUser: string;
+    message: string;
+    exception: string;
+    createdAt: Date;
+    keys: [string]
 }
 
 export interface ErrorId {
@@ -47,10 +61,10 @@ export class ErrorsService {
 
     find(filter: ErrorFilter) {
         let params: URLSearchParams = new URLSearchParams();
-        if(filter.page) params.set('page', '' + filter.page);
-        if(filter.query) params.set('q', '' + filter.query);
-        if(filter.solved) params.set('solved', '' + filter.solved);
-        if(filter.sort) params.set('sort', '' + filter.sort);
+        if (filter.page) params.set('page', '' + filter.page);
+        if (filter.query) params.set('q', '' + filter.query);
+        if (filter.solved) params.set('solved', '' + filter.solved);
+        if (filter.sort) params.set('sort', '' + filter.sort);
 
         let options = {
             headers: contentHeaders,
@@ -58,6 +72,32 @@ export class ErrorsService {
         };
 
         return this._http.get(`${baseUrl}/${filter.appName}/errors`, options)
-            .map(response => <Result<Error>>response.json());
+            .map(response => <Result<ErrorAggregation>>response.json());
+    }
+
+    get(hash: string, appName: string) {
+        let options = {
+            headers: contentHeaders,
+        };
+
+        return this._http.get(`${baseUrl}/${appName}/error/${hash}`, options)
+            .map(response => <Error>response.json());
+    }
+
+    getById(hash: string, id: string) {
+        let options = {
+            headers: contentHeaders,
+        };
+
+        return this._http.get(`${baseUrl}/error/${hash}/${id}`, options)
+            .map(response => <Error>response.json());
+    }
+
+    solve(hash: string, appName: string) {
+        let options = {
+            headers: contentHeaders,
+        };
+
+        return this._http.put(`${baseUrl}/error/${hash}`, null, options);
     }
 }
