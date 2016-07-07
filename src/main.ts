@@ -11,7 +11,8 @@ import {
   AuthGuard,
   Auth,
   AppsService,
-  ErrorsService
+  ErrorsService,
+  CommentService
 } from './app/';
 
 if (environment.production) {
@@ -26,5 +27,6 @@ bootstrap(AppComponent, [
   AUTH_PROVIDERS,
   AppsService,
   ErrorsService,
+  CommentService
 ]);
 

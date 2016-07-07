@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Response } from '@angular/http';
 
 import { TruncatePipe } from '../shared/truncate.pipe';
 
 import { Error, ErrorsService } from './errors.service';
+
+import { CommentComponent } from '../comment';
 
 @Component({
   moduleId: module.id,
   selector: 'app-error',
   templateUrl: 'error.component.html',
   styleUrls: ['error.component.css'],
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, CommentComponent],
   pipes: [TruncatePipe]
 })
 export class ErrorComponent implements OnInit {
@@ -51,7 +54,7 @@ export class ErrorComponent implements OnInit {
 
   solve() {
     this._errorsService.solve(this.hash, this.name)
-    .subscribe(response => {
+    .subscribe((response: Response) => {
       if(response.ok) {
           this.solved = true;
       }

@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { JwtHelper } from 'angular2-jwt/angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 
 import { environment } from '../environment';
 import { contentHeaders } from './headers';
@@ -42,5 +42,12 @@ export class Auth extends EventEmitter<any> {
     handleException(error: any) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
+    }
+
+    getUser() {
+        let token: string = localStorage.getItem('id_token');
+        if(!token || tokenNotExpired(token)) return;
+
+        return this._helper.decodeToken(token);
     }
 }
