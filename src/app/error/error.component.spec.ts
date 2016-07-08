@@ -14,7 +14,7 @@ import { ErrorComponent } from './error.component';
 
 describe('Component: Error', () => {
   it('should create an instance', () => {
-    let component = new ErrorComponent();
+    let component = new ErrorComponent(null, null, null);
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,6 @@
+{
+  "name": "marinet",
+  "description": "marinet web ui",
+  "image": "heroku/nodejs",
+  "addons": []
+}

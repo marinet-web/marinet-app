@@ -14,7 +14,7 @@ import { AppsComponent } from './apps.component';
 
 describe('Component: Apps', () => {
   it('should create an instance', () => {
-    let component = new AppsComponent();
+    let component = new AppsComponent(null);
     expect(component).toBeTruthy();
   });
 });

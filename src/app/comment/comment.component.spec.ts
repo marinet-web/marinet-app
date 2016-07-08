@@ -14,7 +14,7 @@ import { CommentComponent } from './comment.component';
 
 describe('Component: Comment', () => {
   it('should create an instance', () => {
-    let component = new CommentComponent();
+    let component = new CommentComponent(null, null);
     expect(component).toBeTruthy();
   });
 });

@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
 
      this._appsService.find()
     .subscribe(
-      (apps: [App])=> this.apps = apps,
-      errors => alert('error'));
+      (apps: [App])=> this.apps = apps, error => console.log(error));
   }
 }

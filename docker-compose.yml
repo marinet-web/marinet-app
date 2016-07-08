@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: 'lite-server ./dist'
+    working_dir: /app/user
+    environment:
+      PORT: 3000
+    ports:
+      - "4200:3000"
+  
