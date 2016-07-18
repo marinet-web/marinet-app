@@ -13,7 +13,7 @@ export interface Comment {
     userEmail: string;
     userRole: string;
     userName: string;
-    errorHash: string;
+    hash: string;
     message: string;
     _id: string;
 }
@@ -24,7 +24,7 @@ export class CommentService {
     constructor(private _http: AuthHttp) { }
 
     find(hash: string) {
-        return this._http.get(`${baseUrl}/comments/${hash}`,{headers: contentHeaders})
+        return this._http.get(`${baseUrl}/api/comments/${hash}`,{headers: contentHeaders})
         .map(response => {
             if(response.ok) return <[Comment]>response.json();
             return <[Comment]>[];
@@ -32,7 +32,7 @@ export class CommentService {
     }
 
     comment(data: Comment) {
-        return this._http.post(`${baseUrl}/comment`, JSON.stringify(data), {headers: contentHeaders});
+        return this._http.post(`${baseUrl}/api/comments`, JSON.stringify(data), {headers: contentHeaders});
     }
 
 }

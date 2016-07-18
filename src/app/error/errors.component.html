@@ -104,7 +104,7 @@
                         </div>
                         <div class="news-content">
                             <div class="news-title">
-                                <a [routerLink]="['/' + name,'/error','/' + error._id.hash]" class="pull-left" [title]="error.message">{{error.message | truncate:80}}</a>
+                                <a [routerLink]="['/' + name,'/error','/' + error.hash]" class="pull-left" [title]="error.message">{{error.message | truncate:80}}</a>
                                 <span class="badge pull-left" [ngClass]="{'badge-green': error.solved, 'badge-red': !error.solved}" style="margin-left: 5px;">{{error.count}}</span>
                                 <span class="clean">&nbsp;</span>
                             </div>

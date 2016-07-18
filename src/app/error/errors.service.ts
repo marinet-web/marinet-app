@@ -17,32 +17,20 @@ export interface Result<T> {
 }
 
 export interface ErrorAggregation {
-    _id: ErrorId;
     hash: string;
     message: string;
-    exception: string;
     createdAt: Date;
-    solved: boolean
-    count: number
+    type: string;
+    count: number;
 }
 
 export interface Error {
-    selected: string;
-    _id: string;
+    id: string;
     hash: string;
-    solved: boolean;
-    accountId: string;
-    appName: string;
-    currentUser: string;
+    application: string;
     message: string;
     exception: string;
     createdAt: Date;
-    keys: [string]
-}
-
-export interface ErrorId {
-    hash: string;
-    appName: string;
 }
 
 export interface ErrorFilter {
@@ -71,7 +59,7 @@ export class ErrorsService {
             search: params
         };
 
-        return this._http.get(`${baseUrl}/${filter.appName}/errors`, options)
+        return this._http.get(`${baseUrl}/api/messages`, options)
             .map(response => <Result<ErrorAggregation>>response.json());
     }
 
@@ -80,7 +68,7 @@ export class ErrorsService {
             headers: contentHeaders,
         };
 
-        return this._http.get(`${baseUrl}/${appName}/error/${hash}`, options)
+        return this._http.get(`${baseUrl}/api/message/${hash}`, options)
             .map(response => <Error>response.json());
     }
 
@@ -89,7 +77,7 @@ export class ErrorsService {
             headers: contentHeaders,
         };
 
-        return this._http.get(`${baseUrl}/error/${hash}/${id}`, options)
+        return this._http.get(`${baseUrl}/api/message/${id}`, options)
             .map(response => <Error>response.json());
     }
 

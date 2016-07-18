@@ -49,16 +49,12 @@
               <thead>
                 <tr>
                   <td>Nome da Aplicação</td>
-                  <td>Total Errors</td>
-                  <td>Erros em Aberto</td>
                   <td style="width: 110px;"></td>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="#app of apps">
                   <td ng-bind="">{{app.name}}</td>
-                  <td ng-bind="">{{app.errors}}</td>
-                  <td ng-bind="">{{app.openErrors}}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <a [routerLink]="['/'+app.name,'errors']" class="btn btn-success">Erros</a>

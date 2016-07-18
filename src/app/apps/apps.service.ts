@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Rx';
 const baseUrl = environment.baseUrl;
 
 export interface App {
-    id: string;
+    _id: string;
     name: string;
-    key: string;
-    errors: number;
-    openErrors: number;
+    query: string;
+    createdAt: Date;
+    token: string;
 }
 
 @Injectable()
@@ -24,13 +24,13 @@ export class AppsService {
     constructor(private _http: AuthHttp) { }
 
     find() {
-        return this._http.get(`${baseUrl}/account/apps`, {headers: contentHeaders})
+        return this._http.get(`${baseUrl}/api/applications`, {headers: contentHeaders})
         .map(response => response.json())
         .catch(this.handleException);
     }
 
     save(app) {
-        return this._http.post(`${baseUrl}/account/app`, app, {headers: contentHeaders})
+        return this._http.post(`${baseUrl}/api/applications`, app, {headers: contentHeaders})
         .catch(this.handleException);
     }
     

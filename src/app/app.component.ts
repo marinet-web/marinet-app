@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this._auth.logout();
+    this.openDropdown = false;
     this._router.navigate(['/login']);
   }
 
@@ -37,10 +38,11 @@ export class AppComponent implements OnInit {
     this._auth.subscribe(user => {
       this.user = user;
       this.loggedIn = !!user;
-    });
 
-     this._appsService.find()
-    .subscribe(
-      (apps: [App])=> this.apps = apps, error => console.log(error));
+      if (this.loggedIn)
+        this._appsService.find()
+          .subscribe(
+          (apps: [App]) => this.apps = apps, error => console.log(error));
+    });
   }
 }

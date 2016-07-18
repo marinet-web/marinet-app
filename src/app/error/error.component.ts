@@ -35,8 +35,8 @@ export class ErrorComponent implements OnInit {
       this._errorsService.get(this.hash, this.name)
         .subscribe(error => {
           this.error = error
-          this.keys = this.error.keys;
-          this.solved = error.solved;
+          //this.keys = this.error.keys;
+          //this.solved = error.solved;
         },
         err => alert('Error!'));
     });
@@ -46,8 +46,8 @@ export class ErrorComponent implements OnInit {
     this._errorsService.getById(this.hash, key)
       .subscribe(error => {
         this.error = error;
-        this.solved = error.solved;
-        this.error.selected = key;
+        //this.solved = error.solved;
+        //this.error.selected = key;
       },
       err => alert('Error!'));
   }

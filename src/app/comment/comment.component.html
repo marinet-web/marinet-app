@@ -11,7 +11,7 @@
           <span class="name">
                         <span class="label label-green">{{comment.userRole}}</span> <strong class="indent">{{comment.userName}}</strong>
           </span>
-          <span class="time"><i class="icon-time"></i> <span></span></span>
+          <span class="time"><i class="icon-time"></i> <time>{{comment.createdAt | amTimeAgo}}</time><span></span></span>
         </div>
         <div class="content">
           <blockquote>

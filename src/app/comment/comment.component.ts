@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Auth } from '../shared/auth';
+import { TimeAgoPipe } from 'angular2-moment';
 
 import { GravatarComponent } from '../gravatar';
 import { CommentService, Comment } from './comment.service';
@@ -7,6 +8,7 @@ import { CommentService, Comment } from './comment.service';
 @Component({
   moduleId: module.id,
   selector: 'comments',
+  pipes: [TimeAgoPipe],
   templateUrl: 'comment.component.html',
   styleUrls: ['comment.component.css'],
   directives: [GravatarComponent]
@@ -27,7 +29,7 @@ export class CommentComponent implements OnInit {
 
   send() {
     this._commentService.comment(<Comment>{
-      errorHash: this.hash,
+      hash: this.hash,
       message: this.message,
       userEmail: this.user.email,
       userRole: this.user.name,

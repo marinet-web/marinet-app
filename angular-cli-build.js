@@ -17,6 +17,8 @@ module.exports = function(defaults) {
       'rxjs/**/*.+(js|js.map)',
       'angular2-jwt/**/*.+(js|js.map)',
       'ts-md5/**/*.+(js|js.map)',
+      'angular2-moment/**/*.+(js|js.map)',
+      'moment/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)'
     ]
   });

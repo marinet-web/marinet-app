@@ -32,6 +32,8 @@ const barrels: string[] = [
   'rxjs',
   'angular2-jwt',
   'ts-md5',
+  'angular2-moment',
+  'moment',
 
   // App specific barrels.
   'app',
@@ -49,7 +51,12 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
-  cliSystemConfigPackages[barrelName] = { main: 'index' };
+  if(barrelName != 'moment'){
+    cliSystemConfigPackages[barrelName] = { main: 'index' };
+  }else{
+    cliSystemConfigPackages[barrelName] = { main: barrelName };
+  }
+  
 });
 
 /** Type declaration for ambient System. */
@@ -62,6 +69,8 @@ System.config({
     'rxjs': 'vendor/rxjs',
     'ts-md5': 'vendor/ts-md5',
     'angular2-jwt': 'vendor/angular2-jwt',
+    'angular2-moment': 'vendor/angular2-moment',
+    'moment': 'vendor/moment',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages

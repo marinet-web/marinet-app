@@ -7,7 +7,7 @@ import { JwtHelper, tokenNotExpired } from 'angular2-jwt/angular2-jwt';
 import { environment } from '../environment';
 import { contentHeaders } from './headers';
 
-let loginUrl = environment.baseUrl + '/login';
+let loginUrl = environment.baseUrl + '/api/account/login';
 
 @Injectable()
 export class Auth extends EventEmitter<any> {
@@ -21,7 +21,7 @@ export class Auth extends EventEmitter<any> {
     login(user) {
         return this._http.post(loginUrl, user, { headers: contentHeaders })
             .map(res => {
-                let token = res.json();
+                let token = res.text();
                 this.loggedIn(token);
                 return token;
             })

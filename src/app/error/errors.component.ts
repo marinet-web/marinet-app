@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
 
-import { ErrorsService, ErrorAggregation, Result, ErrorId, ErrorFilter } from './errors.service';
+import { ErrorsService, ErrorAggregation, Result, ErrorFilter } from './errors.service';
 import { TruncatePipe } from '../shared/truncate.pipe';
 
 @Component({
@@ -47,7 +47,7 @@ export class ErrorsComponent implements OnInit {
         this._errorsService.find(this.filter)
             .subscribe((errors: Result<ErrorAggregation>) => {
                 this.errors = errors.data;
-                this.sugestions = errors.sugestions;
+                this.sugestions = errors.sugestions || <[string]>[];
                 this.total = errors.totalSize;
                 this.busy = false;
             });
