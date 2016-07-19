@@ -14,7 +14,7 @@ import { LoginComponent } from './login.component';
 
 describe('Component: Login', () => {
   it('should create an instance', () => {
-    let component = new LoginComponent(null, null);
+    let component = new LoginComponent(undefined, undefined,undefined);
     expect(component).toBeTruthy();
   });
 });
