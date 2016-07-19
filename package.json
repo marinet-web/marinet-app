@@ -24,6 +24,7 @@
     "angular2-clipboard": "^0.2.12",
     "angular2-jwt": "^0.1.16",
     "angular2-moment": "^0.8.1",
+    "angular2-toaster": "^0.3.6-rc.4",
     "es6-shim": "0.35.1",
     "md5": "^2.1.0",
     "reflect-metadata": "0.1.3",

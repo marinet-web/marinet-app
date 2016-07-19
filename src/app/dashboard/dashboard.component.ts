@@ -5,6 +5,8 @@ import { AppsService, App } from '../apps';
 
 import {ClipboardDirective} from 'angular2-clipboard';
 
+import {ToasterService} from 'angular2-toaster';
+
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
@@ -16,16 +18,17 @@ export class DashboardComponent implements OnInit {
 
   apps: [any] = [{}];
 
-  constructor(private _appsService: AppsService) {}
+  constructor(private _appsService: AppsService,
+    private _toasterService: ToasterService) { }
 
   ngOnInit() {
     this._appsService.find()
-    .subscribe(
-      (apps: [App])=> this.apps = apps,
-      errors => alert('error'));
+      .subscribe(
+      (apps: [App]) => this.apps = apps,
+      errors => this._toasterService.pop('error','Dashboard', 'Cannot get applications. Server is unvailable.'));
   }
 
-  public copied(success: boolean){
-    alert('Token copied to clipboard.');
+  public copied(success: boolean) {
+    this._toasterService.pop('success','Dashboard', 'Token successfully copied to clipboard.');
   }
 }

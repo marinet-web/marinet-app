@@ -19,6 +19,7 @@ module.exports = function(defaults) {
       'ts-md5/**/*.+(js|js.map)',
       'angular2-moment/**/*.+(js|js.map)',
       'angular2-clipboard/**/*.+(js|js.map)',
+      'angular2-toaster/**/*.+(js|js.map)',
       'clipboard/**/*.+(js|js.map)',
       'tiny-emitter/**/*.+(js|js.map)',
       'good-listener/**/*.+(js|js.map)',

@@ -39,6 +39,7 @@ const barrels: string[] = [
   'tiny-emitter',
   'good-listener',
   'select',
+  'angular2-toaster',
 
 
   // App specific barrels.
@@ -57,7 +58,7 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
-  if (barrelName === 'moment') {
+  if (['moment','angular2-toaster'].indexOf(barrelName) !== -1) {
     cliSystemConfigPackages[barrelName] = { main: barrelName };
 
   } else if (barrelName === 'clipboard') {
@@ -81,6 +82,7 @@ System.config({
     'ts-md5': 'vendor/ts-md5',
     'angular2-jwt': 'vendor/angular2-jwt',
     'angular2-moment': 'vendor/angular2-moment',
+    'angular2-toaster': 'vendor/angular2-toaster',
     'moment': 'vendor/moment',
     'clipboard': 'vendor/clipboard',
     'tiny-emitter': 'vendor/tiny-emitter',

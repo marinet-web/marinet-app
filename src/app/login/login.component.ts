@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
-
+import {ToasterService} from 'angular2-toaster';
 import { Auth } from '../shared/auth';
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent {
   busy: boolean = false;
 
   constructor(private _router: Router,
+    private _toasterService: ToasterService,
     private _auth: Auth) { }
 
   login(event) {
@@ -29,9 +30,13 @@ export class LoginComponent {
         this.busy = false;
         this._router.navigate(['/']);
       },
-      error => {
+      err => {
         this.busy = false;
-        alert('Error!');
+        if(err.status === 401)
+          this._toasterService.pop('warning','Login Error', 'Invalid username or password')
+        else
+          this._toasterService.pop('error','Login Error', 'Cannot contact server. Try again later.')
+        
       });
   }
 

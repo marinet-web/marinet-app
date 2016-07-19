@@ -3,13 +3,14 @@ import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { Auth } from './shared/auth';
 import { GravatarComponent } from './gravatar';
 import { AppsService, App } from './apps';
+import { ToasterContainerComponent } from 'angular2-toaster';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [ROUTER_DIRECTIVES, GravatarComponent],
+  directives: [ROUTER_DIRECTIVES, GravatarComponent, ToasterContainerComponent],
 })
 export class AppComponent implements OnInit {
 

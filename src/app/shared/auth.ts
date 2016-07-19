@@ -21,11 +21,12 @@ export class Auth extends EventEmitter<any> {
     login(user) {
         return this._http.post(loginUrl, user, { headers: contentHeaders })
             .map(res => {
-                let token = res.text();
-                this.loggedIn(token);
-                return token;
-            })
-            .catch(this.handleException);
+                if (res.ok) {
+                    let token = res.text();
+                    this.loggedIn(token);
+                }
+                return res;
+            });
     }
 
     logout() {
@@ -39,14 +40,9 @@ export class Auth extends EventEmitter<any> {
         super.emit(user);
     }
 
-    handleException(error: any) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
-
     getUser() {
         let token: string = localStorage.getItem('id_token');
-        if(!token || tokenNotExpired(token)) return;
+        if (!token || tokenNotExpired(token)) return;
 
         return this._helper.decodeToken(token);
     }
