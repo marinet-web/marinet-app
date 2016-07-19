@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { FORM_DIRECTIVES } from '@angular/forms';
+import { ROUTER_DIRECTIVES , Router } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { AppsService, App } from './apps.service';
@@ -9,11 +10,11 @@ import { AppsService, App } from './apps.service';
     selector: 'newApp',
     templateUrl: 'newapp.component.html',
     styleUrls: ['newapp.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class NewAppComponent implements OnInit {
 
-    appName: string = '';
+    app: App = <App>{};
 
     constructor(private _appsService: AppsService,
         private _router: Router) { }
@@ -21,7 +22,7 @@ export class NewAppComponent implements OnInit {
     ngOnInit() { }
 
     save() {
-        this._appsService.save({ name: this.appName })
+        this._appsService.save(this.app)
             .subscribe((response: Response) => {
                 if (response.ok)
                     this._router.navigate(['']);

@@ -49,7 +49,7 @@
               <thead>
                 <tr>
                   <td>Nome da Aplicação</td>
-                  <td style="width: 110px;"></td>
+                  <td style="width: 220px;"></td>
                 </tr>
               </thead>
               <tbody>
@@ -57,7 +57,10 @@
                   <td ng-bind="">{{app.name}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <a [routerLink]="['/'+app.name,'errors']" class="btn btn-success">Erros</a>
+                      <a class="btn btn-primary" ngIIclipboard (cbOnSuccess)="copied(true)" [cbContent]="app.token">Token</a>
+                    </div>
+                    <div class="btn-group">
+                      <a [routerLink]="['/'+app.name,'errors']" class="btn btn-success">Messages</a>
                     </div>
                   </td>
                 </tr>

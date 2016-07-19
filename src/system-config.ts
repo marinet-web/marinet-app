@@ -27,13 +27,19 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-  
+
   // Thirdparty barrels.
   'rxjs',
   'angular2-jwt',
   'ts-md5',
   'angular2-moment',
   'moment',
+  'angular2-clipboard',
+  'clipboard',
+  'tiny-emitter',
+  'good-listener',
+  'select',
+
 
   // App specific barrels.
   'app',
@@ -51,12 +57,17 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
-  if(barrelName != 'moment'){
-    cliSystemConfigPackages[barrelName] = { main: 'index' };
-  }else{
+  if (barrelName === 'moment') {
     cliSystemConfigPackages[barrelName] = { main: barrelName };
+
+  } else if (barrelName === 'clipboard') {
+    cliSystemConfigPackages[barrelName] = { main: 'lib/clipboard' };
+  } else if (['good-listener', 'select'].indexOf(barrelName) !== -1) {
+    cliSystemConfigPackages[barrelName] = { main: 'dist/' + barrelName };
+  } else {
+    cliSystemConfigPackages[barrelName] = { main: 'index' };
   }
-  
+
 });
 
 /** Type declaration for ambient System. */
@@ -71,6 +82,11 @@ System.config({
     'angular2-jwt': 'vendor/angular2-jwt',
     'angular2-moment': 'vendor/angular2-moment',
     'moment': 'vendor/moment',
+    'clipboard': 'vendor/clipboard',
+    'tiny-emitter': 'vendor/tiny-emitter',
+    'good-listener': 'vendor/good-listener',
+    'select': 'vendor/select',
+    'angular2-clipboard': 'vendor/angular2-clipboard',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages

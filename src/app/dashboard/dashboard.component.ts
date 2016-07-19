@@ -3,12 +3,14 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { AppsService, App } from '../apps';
 
+import {ClipboardDirective} from 'angular2-clipboard';
+
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css'],
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, ClipboardDirective]
 })
 export class DashboardComponent implements OnInit {
 
@@ -23,4 +25,7 @@ export class DashboardComponent implements OnInit {
       errors => alert('error'));
   }
 
+  public copied(success: boolean){
+    alert('Token copied to clipboard.');
+  }
 }

@@ -3,17 +3,17 @@
     <div class="login box" style="margin-top: 80px;">
       <div class="box-header"><span class="title">Login</span></div>
       <div class="box-content padded">
-        <form name="form" class="separate-sections" role="form" (submit)="login($event)">
+        <form class="separate-sections" #loginForm="ngForm" role="form" (submit)="login($event)">
           <div class="input-group addon-left">
             <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input name="Username" [(ngModel)]="username" type="text" placeholder="username" required>
+            <input name="Username" [(ngModel)]="username" ngControl="username" type="text" placeholder="username" required>
           </div>
           <div class="input-group addon-left">
             <span class="input-group-addon"><i class="icon-key"></i></span>
-            <input name="Password" [(ngModel)]="password" type="password" placeholder="password" required>
+            <input name="Password" [(ngModel)]="password" ngControl="password" type="password" placeholder="password" required>
           </div>
           <div>
-            <button class="btn btn-blue btn-block" [disabled]="busy" type="submit">Login <i class="icon-signin"></i></button>
+            <button class="btn btn-blue btn-block" [disabled]="!loginForm.valid || buzy" type="submit">Login <i class="icon-signin"></i></button>
           </div>
         </form>
         <div>
