@@ -47,7 +47,7 @@ export class ErrorsComponent implements OnInit {
         this._errorsService.find(this.filter)
             .subscribe((errors: Result<ErrorAggregation>) => {
                 this.errors = errors.data;
-                this.sugestions = errors.sugestions || <[string]>[];
+                this.sugestions = errors.suggestions || <[string]>[];
                 this.total = errors.totalSize;
                 this.busy = false;
             });
@@ -56,6 +56,11 @@ export class ErrorsComponent implements OnInit {
     orderAsc(event) {
         if(this.filter.sort) delete this.filter.sort
         else this.filter.sort = 'asc';    
+        this.search();
+    }
+
+     setQuery(text) {
+        this.filter.query = text;    
         this.search();
     }
 

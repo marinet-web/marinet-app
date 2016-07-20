@@ -9,7 +9,7 @@ const baseUrl = environment.baseUrl;
 
 export interface Result<T> {
     currentPage: number;
-    sugestions: [string];
+    suggestions: [string];
     totalPages: number;
     totalSize: number;
     data: [T]
