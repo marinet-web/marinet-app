@@ -24,14 +24,17 @@ export class Auth extends EventEmitter<any> {
                 if (res.ok) {
                     let token = res.text();
                     this.loggedIn(token);
+                    this.setExpiration();
                 }
                 return res;
             });
     }
 
     logout() {
-        localStorage.removeItem('id_token');
-        super.emit(null);
+        if(localStorage.getItem('id_token')){
+            localStorage.removeItem('id_token');
+            super.emit(undefined);
+        }
     }
 
     loggedIn(token) {
@@ -45,5 +48,16 @@ export class Auth extends EventEmitter<any> {
         if (!token || tokenNotExpired(token)) return;
 
         return this._helper.decodeToken(token);
+    }
+
+    setExpiration(){
+        let user = this.getUser();
+        let now = new Date();
+        let target = new Date(user.exp * 1000);
+        let time = target.getTime() - now.getTime();
+        
+        setTimeout(() => {
+            this.logout();
+        }, time);
     }
 }

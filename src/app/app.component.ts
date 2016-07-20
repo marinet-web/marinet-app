@@ -40,10 +40,15 @@ export class AppComponent implements OnInit {
       this.user = user;
       this.loggedIn = !!user;
 
-      if (this.loggedIn)
+      if (this.loggedIn){
         this._appsService.find()
           .subscribe(
           (apps: [App]) => this.apps = apps, error => console.log(error));
+      }else{
+        console.log('Expired');
+        this.logout();
+      }
+        
     });
   }
 }
