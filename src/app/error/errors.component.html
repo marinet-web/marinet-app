@@ -90,7 +90,10 @@
                         </li>
                     </ul>
                 </div>
-                <div style="overflow-y: auto" class="box-content scrollable" >
+                <div style="overflow-y: auto" class="box-content scrollable" infinite-scroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="500"
+            (scrolled)="onScroll()">
                     <div *ngIf="errors && !errors.length" class="text-center" style="padding: 25px;">
                         No errors
                     </div>
@@ -104,12 +107,12 @@
                         </div>
                         <div class="news-content">
                             <div class="news-title">
-                                <a [routerLink]="['/' + name,'/error','/' + error.hash]" class="pull-left" [title]="error.message">{{error.message | truncate:80}}</a>
+                                <a [routerLink]="['/' + name,'/error','/' + error.id]" class="pull-left" [title]="error.message">{{error.message}}</a>
                                 <span class="badge pull-left" [ngClass]="{'badge-green': error.solved, 'badge-red': !error.solved}" style="margin-left: 5px;">{{error.count}}</span>
                                 <span class="clean">&nbsp;</span>
                             </div>
                             <div class="news-text">
-                                {{error.exception | truncate:200}}
+                                {{error.exception | truncate:200:'...'}}
                             </div>
                         </div>
                     </div>

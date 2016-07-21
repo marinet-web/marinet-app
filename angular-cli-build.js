@@ -20,6 +20,7 @@ module.exports = function(defaults) {
       'angular2-moment/**/*.+(js|js.map)',
       'angular2-clipboard/**/*.+(js|js.map)',
       'angular2-toaster/**/*.+(js|js.map)',
+      'angular2-infinite-scroll/**/*.+(js|js.map)',
       'clipboard/**/*.+(js|js.map)',
       'tiny-emitter/**/*.+(js|js.map)',
       'good-listener/**/*.+(js|js.map)',

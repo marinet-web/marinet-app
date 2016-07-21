@@ -40,7 +40,7 @@ const barrels: string[] = [
   'good-listener',
   'select',
   'angular2-toaster',
-
+  'angular2-infinite-scroll',
 
   // App specific barrels.
   'app',
@@ -83,6 +83,7 @@ System.config({
     'angular2-jwt': 'vendor/angular2-jwt',
     'angular2-moment': 'vendor/angular2-moment',
     'angular2-toaster': 'vendor/angular2-toaster',
+    'angular2-infinite-scroll': 'vendor/angular2-infinite-scroll',
     'moment': 'vendor/moment',
     'clipboard': 'vendor/clipboard',
     'tiny-emitter': 'vendor/tiny-emitter',

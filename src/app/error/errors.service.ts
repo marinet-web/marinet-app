@@ -16,21 +16,14 @@ export interface Result<T> {
     sort: number;
 }
 
-export interface ErrorAggregation {
-    hash: string;
-    message: string;
-    createdAt: Date;
-    type: string;
-    count: number;
-}
-
 export interface Error {
     id: string;
-    hash: string;
     application: string;
     message: string;
     exception: string;
     createdAt: Date;
+    level: string;
+    count: number;
 }
 
 export interface ErrorFilter {
@@ -60,7 +53,7 @@ export class ErrorsService {
         };
 
         return this._http.get(`${baseUrl}/api/messages`, options)
-            .map(response => <Result<ErrorAggregation>>response.json());
+            .map(response => <Result<Error>>response.json());
     }
 
     get(hash: string, appName: string) {

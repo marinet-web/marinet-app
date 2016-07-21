@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { InfiniteScroll } from 'angular2-infinite-scroll/angular2-infinite-scroll';
 
-import { ErrorsService, ErrorAggregation, Result, ErrorFilter } from './errors.service';
+import { ErrorsService, Error, Result, ErrorFilter } from './errors.service';
 import { TruncatePipe } from '../shared/truncate.pipe';
 
 @Component({
@@ -9,15 +10,15 @@ import { TruncatePipe } from '../shared/truncate.pipe';
     selector: 'errors',
     templateUrl: 'errors.component.html',
     pipes: [TruncatePipe],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, InfiniteScroll]
 })
 export class ErrorsComponent implements OnInit {
     name: string = '';
     sugestions: [string] = <[string]>new Array();
     total: number = 0;
-    errors: [ErrorAggregation];
+    errors: [Error] = <[Error]>[];
     busy: boolean = false;
-    filter: ErrorFilter = <ErrorFilter>{};
+    filter: ErrorFilter = <ErrorFilter>{ page: 1};
     openDropdown: boolean = false;
 
     constructor(private _errorsService: ErrorsService,
@@ -25,7 +26,7 @@ export class ErrorsComponent implements OnInit {
         private _route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.busy = true;
+        
         this._route.params.subscribe(params =>{
             this.name = params['app'];
             this.filter.appName = this.name;
@@ -44,9 +45,12 @@ export class ErrorsComponent implements OnInit {
     }
 
     search() {
+        this.busy = true;
         this._errorsService.find(this.filter)
-            .subscribe((errors: Result<ErrorAggregation>) => {
-                this.errors = errors.data;
+            .subscribe((errors: Result<Error>) => {
+                errors.data.forEach((item) => {
+                    this.errors.push(item);
+                });
                 this.sugestions = errors.suggestions || <[string]>[];
                 this.total = errors.totalSize;
                 this.busy = false;
@@ -61,6 +65,11 @@ export class ErrorsComponent implements OnInit {
 
      setQuery(text) {
         this.filter.query = text;    
+        this.search();
+    }
+
+    onScroll(){
+        this.filter.page++;
         this.search();
     }
 
