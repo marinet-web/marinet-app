@@ -13,11 +13,11 @@ import {Pipe} from '@angular/core';
  */
 @Pipe({ name: 'truncate' })
 export class TruncatePipe {
-	transform(value: string, args: string[]): any {
-		console.log(args)
-		let length = parseInt(args[0] || '25', 10),
-			suffix = args[1] || '';
-		console.log(length);
+	transform(value: string, args: string): any {
+		
+		let length = parseInt(args || '25', 10),
+			suffix = args[1] || '...';
+		
 		if (!value || value.length <= length) {
 			return value;
 		}

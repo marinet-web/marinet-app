@@ -30,21 +30,27 @@ export class ErrorsComponent implements OnInit {
         this._route.params.subscribe(params =>{
             this.name = params['app'];
             this.filter.appName = this.name;
-            this.search();
+            this.find();
         });
     }
 
     default() {
         delete this.filter.solved;
-        this.search();
+        this.find();
     }
 
     onlySolved() {
         this.filter.solved = true;
-        this.search();
+        this.find();
     }
 
-    search() {
+    search(){
+        this.errors = <[Error]>[];
+        this.filter.page = 1;
+        this.find();    
+    }
+
+    find() {
         this.busy = true;
         this._errorsService.find(this.filter)
             .subscribe((errors: Result<Error>) => {
@@ -60,17 +66,17 @@ export class ErrorsComponent implements OnInit {
     orderAsc(event) {
         if(this.filter.sort) delete this.filter.sort
         else this.filter.sort = 'asc';    
-        this.search();
+        this.find();
     }
 
      setQuery(text) {
         this.filter.query = text;    
-        this.search();
+        this.find();
     }
 
     onScroll(){
         this.filter.page++;
-        this.search();
+        this.find();
     }
 
 }
