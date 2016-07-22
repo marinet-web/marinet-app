@@ -13,7 +13,7 @@
             <input name="Password" [(ngModel)]="password" ngControl="password" type="password" placeholder="password" required>
           </div>
           <div>
-            <button class="btn btn-blue btn-block" [disabled]="!loginForm.valid || buzy" type="submit">Login <i class="icon-signin"></i></button>
+            <button class="btn btn-blue btn-block" [disabled]="buzy" type="submit">Login <i class="icon-signin"></i></button>
           </div>
         </form>
         <div>

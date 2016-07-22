@@ -32,6 +32,7 @@ export class Auth extends EventEmitter<any> {
 
     logout() {
         if(localStorage.getItem('id_token')){
+            console.log('Logout');
             localStorage.removeItem('id_token');
             super.emit(undefined);
         }
@@ -58,6 +59,6 @@ export class Auth extends EventEmitter<any> {
         
         setTimeout(() => {
             this.logout();
-        }, time);
+        }, time * 1000);
     }
 }

@@ -36,10 +36,14 @@ export class ErrorsComponent implements OnInit {
 
     default() {
         delete this.filter.solved;
+        this.errors = <[Error]>[];
+        this.filter.page = 1;
         this.find();
     }
 
     onlySolved() {
+        this.errors = <[Error]>[];
+        this.filter.page = 1;
         this.filter.solved = true;
         this.find();
     }
