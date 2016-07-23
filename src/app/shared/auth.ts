@@ -56,9 +56,8 @@ export class Auth extends EventEmitter<any> {
         let now = new Date();
         let target = new Date(user.exp * 1000);
         let time = target.getTime() - now.getTime();
-        
         setTimeout(() => {
             this.logout();
-        }, time * 1000);
+        }, time);
     }
 }
